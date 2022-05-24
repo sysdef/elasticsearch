@@ -1,6 +1,6 @@
-# elasticsearch for otrs-8
+# elasticsearch with plugins
 
- elasticsearch docker container for otrs version 8
+ elasticsearch docker container with pre-installed plugins
 
 ## plugins
 

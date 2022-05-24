@@ -11,7 +11,7 @@ services:
       #- cluster.initial_master_nodes=es01
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - path.repo=/srv/backup
+      #- path.repo=/srv/backup
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
     ulimits:
       memlock:
@@ -19,16 +19,16 @@ services:
         hard: -1
     volumes:
       - es01:/usr/share/elasticsearch/data
-      - ./backup:/srv/backup
+      #- ./backup:/srv/backup
     ports:
       - 9200:9200
     networks:
       - elastic
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 1G
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '2'
+    #      memory: 1G
  
 volumes:
   es01:
