@@ -1,0 +1,34 @@
+# (c)2022 by sysdef
+version: '3.7'
+services:
+  es01:
+    build: .
+    container_name: es01
+    restart: unless-stopped
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      #- cluster.initial_master_nodes=es01
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - path.repo=/srv/backup
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es01:/usr/share/elasticsearch/data
+      - ./backup:/srv/backup
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+ 
+volumes:
+  es01:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
